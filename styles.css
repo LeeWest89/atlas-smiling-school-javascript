@@ -193,7 +193,7 @@
   background-color: var(--main-color);
 }
 
-.quotes .carousel-item img {
+.quotes .qCarousel img {
   width: 160px;
   border-radius: 75px;
   margin-left: 10px;
@@ -236,7 +236,7 @@
 }
 
 @media screen and (max-width: 991px) {
-  .quotes .carousel-item img {
+  .quotes .qCarousel img {
     margin-left: 80px;
   }
   .quote-text {
@@ -245,7 +245,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .quotes .carousel-item img {
+  .quotes .qCarousel img {
     margin-left: 40px;
   }
 }
@@ -258,11 +258,11 @@
   .quotes {
     height: auto;
   }
-  .quotes .carousel-item img {
+  .quotes .qCarousel img {
     margin: 90px auto 0 auto;
     padding-bottom: 10px;
   }
-  .quotes .carousel-item .quote-text {
+  .quotes .qCarousel .quote-text {
     padding-bottom: 103px;
   }
 
@@ -899,4 +899,45 @@
   .results .card {
     width: 90vw;
   }
+}
+
+
+/* My Changes  */
+
+.slick-slide {
+  margin: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  display: flex !important;
+}
+
+button.slick-next.slick-arrow {
+  content: url('images/arrow_white_right.png') !important;
+  display: flex !important;
+  width: 29.04px !important;
+  height: 62.67px !important;
+}
+
+button.slick-prev.slick-arrow {
+  content: url('images/arrow_white_left.png') !important;
+  display: flex !important;
+  width: 29.04px !important;
+  height: 62.67px !important;
+}
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #C271FF;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+  display: none; /* Initially hide the loader */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
