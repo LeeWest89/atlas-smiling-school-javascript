@@ -904,6 +904,8 @@
 
 /* My Changes  */
 
+/* My Changes Quote*/
+
 .slick-slide {
   margin: 0 !important;
   margin: 0 !important;
@@ -912,14 +914,14 @@
   display: flex !important;
 }
 
-button.slick-next.slick-arrow {
+.qCarousel button.slick-next.slick-arrow {
   content: url('images/arrow_white_right.png') !important;
   display: flex !important;
   width: 29.04px !important;
   height: 62.67px !important;
 }
 
-button.slick-prev.slick-arrow {
+.qCarousel button.slick-prev.slick-arrow {
   content: url('images/arrow_white_left.png') !important;
   display: flex !important;
   width: 29.04px !important;
@@ -934,10 +936,41 @@ button.slick-prev.slick-arrow {
   height: 80px;
   animation: spin 2s linear infinite;
   margin: auto;
-  display: none; /* Initially hide the loader */
+  display: none;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* My Changes PT */
+
+.ptCarousel .slick-slide img, .lvCarousel .slick-slide img {
+  display: inline !important;
+}
+
+.ptCarousel button.slick-next.slick-arrow, .lvCarousel button.slick-next.slick-arrow{
+  content: url('images/arrow_black_right.png') !important;
+  display: flex !important;
+  width: 29.04px !important;
+  height: 62.67px !important;
+}
+
+.ptCarousel button.slick-prev.slick-arrow, .lvCarousel button.slick-prev.slick-arrow {
+  content: url('images/arrow_black_left.png') !important;
+  display: flex !important;
+  width: 29.04px !important;
+  height: 62.67px !important;
+}
+
+@media (max-width: 575px) {
+
+  .ptCarousel button.slick-prev.slick-arrow, .lvCarousel button.slick-prev.slick-arrow {
+    margin-left: 15px;
+  }
+
+  .ptCarousel button.slick-next.slick-arrow, .lvCarousel button.slick-next.slick-arrow {
+    margin-right: 15px;
+  }
 }
