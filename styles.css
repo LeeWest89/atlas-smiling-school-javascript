@@ -193,7 +193,7 @@
   background-color: var(--main-color);
 }
 
-.quotes .qCarousel img {
+.quotes .carousel-item img, .qCarousel img {
   width: 160px;
   border-radius: 75px;
   margin-left: 10px;
@@ -228,7 +228,7 @@
 }
 
 .quotes .carousel-control-prev.arrow-left {
-  padding-right: var(--quotes-arrows-pad);
+  padding-right: var(--quotes-arrows-pad) !important;
 }
 
 .quotes .carousel-control-next.arrow-right {
@@ -236,7 +236,7 @@
 }
 
 @media screen and (max-width: 991px) {
-  .quotes .qCarousel img {
+  .quotes .carousel-item img, .qCarousel img {
     margin-left: 80px;
   }
   .quote-text {
@@ -245,7 +245,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .quotes .qCarousel img {
+  .quotes .carousel-item img, .qCarousel img {
     margin-left: 40px;
   }
 }
@@ -258,17 +258,17 @@
   .quotes {
     height: auto;
   }
-  .quotes .qCarousel img {
+  .quotes .carousel-item img, .qCarousel img {
     margin: 90px auto 0 auto;
     padding-bottom: 10px;
   }
-  .quotes .qCarousel .quote-text {
+  .quotes .carousel-item .quote-text, .qCarousel .quote-text {
     padding-bottom: 103px;
   }
 
   .quotes .carousel-control-prev.arrow-left {
-    bottom: var(--arrow-move-y);
-    left: var(--arrow-move-x);
+    bottom: var(--arrow-move-y) !important;
+    left: var(--arrow-move-x) !important;
   }
 
   .quotes .carousel-control-next.arrow-right {
@@ -901,7 +901,6 @@
   }
 }
 
-
 /* My Changes  */
 
 /* My Changes Quote*/
@@ -965,6 +964,16 @@
 }
 
 @media (max-width: 575px) {
+
+  .qCarousel button.slick-prev.slick-arrow {
+    top: 30% !important;
+    left: var(--arrow-move-x) !important;
+  }
+
+  .qCarousel button.slick-next.slick-arrow {
+    top: 30% !important;
+    right: var(--arrow-move-x) !important;
+  }
 
   .ptCarousel button.slick-prev.slick-arrow, .lvCarousel button.slick-prev.slick-arrow {
     margin-left: 15px;
