@@ -789,9 +789,11 @@
   border-style: none;
   border-radius: 3px 3px 0px 0px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.25) !important;
   mix-blend-mode: normal;
   border-left: 0;
+  font-weight: 300;
+  font-size: 23px;
 
   color: var(--color-white);
 }

@@ -251,7 +251,7 @@ $(document).ready(function() {
         filterVideos();
     }
 
-    $('#searchInput').on('keypress', function(event) {
+    $('.search-text-area').on('keypress', function(event) {
         if (event.which === 13 || event.keyCode === 13) {
             filterVideos();
         }
@@ -271,7 +271,7 @@ $(document).ready(function() {
     }
 
     function filterVideos() {
-        let searchValue = $('#searchInput').val().toLowerCase();
+        let searchValue = $('.search-text-area').val().toLowerCase();
         let topicValue = $('#topicDropdown span').text().toLowerCase();
         let sortValue = $('#sortDropdown span').text().toLowerCase();
     
@@ -314,7 +314,7 @@ $(document).ready(function() {
 
     function showVideos(videos) {
         $('.courseImage').empty();
-        let keywords = $('#searchInput').val().toLowerCase();
+        let keywords = $('.search-text-area').val().toLowerCase();
         let filteredVideos = filterKey(videos, keywords);
         $.each(filteredVideos, function(index, obj) {
             let item = obj.video;
@@ -375,7 +375,7 @@ $(document).ready(function() {
                 dropSortGenerate('sortDropdownMenu');
             }
 
-            $('#searchInput').val(data.q);
+            $('.search-text-area').val(data.q);
 
             videos = [];
             $.each(data.courses, function(index, item) {
