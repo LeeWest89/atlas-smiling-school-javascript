@@ -96,6 +96,7 @@ $(document).ready(function() {
                     autoplay: false,
                     autoplaySpeed: 2000,
                     centerMode: false,
+                    infinite: false,
                     responsive: [
                         {
                             breakpoint: 768,
@@ -177,7 +178,7 @@ $(document).ready(function() {
                     slidesToScroll: 1,
                     autoplay: false,
                     autoplaySpeed: 2000,
-                    centerMode: false,
+                    infinite: false,
                     responsive: [
                         {
                             breakpoint: 768,
@@ -314,8 +315,14 @@ $(document).ready(function() {
 
     function showVideos(videos) {
         $('.courseImage').empty();
-        let keywords = $('.search-text-area').val().toLowerCase();
+        let keywords = $('.search-text-area').val();
+
+        if (keywords) {
+            keywords = keywords.toLowerCase();
+        }
+
         let filteredVideos = filterKey(videos, keywords);
+
         $.each(filteredVideos, function(index, obj) {
             let item = obj.video;
             let stars = '';
