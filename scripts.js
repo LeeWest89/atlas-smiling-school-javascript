@@ -204,6 +204,7 @@ $(document).ready(function() {
         }
     });
 
+
     function capFirst(string) {
         return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     }
@@ -236,19 +237,55 @@ $(document).ready(function() {
         $('#sortDropdown').append('<span id="sortSpan">' + firstText + '</span>');
     }
 
-    function dropTopicClick(itemText) {
+    let filtered = [];
+
+    function dropTopicClick(itemText, keywords) {
         $('#topicDropdown span').text(itemText);
+        if (itemText === 'All') {
+            filtered = videos;
+        } else {
+            filtered = videos.filter(video => video.topic === itemText);
+        }
+
+        if (typeof keywords !== 'string') {
+            keywords = '';
+        }
+
+        showVideos(filterKey(filtered, keywords));
     }
 
-    function dropSortClick(itemText, videos) {
+    function dropSortClick(itemText) {
         $('#sortDropdown span').text(itemText);
         if (itemText === 'Most popular' || itemText === 'Most viewed') {
-            videos.sort((a, b) => b.views - a.views);
+            filtered.sort((a, b) => b.views - a.views);
         } else if(itemText === 'Most recent') {
-            videos.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+            filtered.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
         }
-        showVideos(videos);
+        showVideos(filtered);
     }
+
+    $('#searchInput').on('keypress', function(event) {
+        if (event.which === 13 || event.keyCode === 13) {
+            let keywords = $(this).val().toLowerCase();
+            let filteredKeywords = filterKey(videos, keywords);
+            showVideos(filteredKeywords);
+        }
+    });
+
+    function filterKey(videos, keywords){
+        if (!keywords) {
+            return videos;
+        } else {
+            return videos.filter(function(video) {
+                if (Array.isArray(video.keywords)) {
+                    return video.keywords.join(' ').toLowerCase().includes(keywords.toLowerCase());
+                }
+                return false; 
+            });
+        }
+    }
+
+    let videos = [];
 
     $.ajax({
         url: 'https://smileschool-api.hbtn.info/courses',
@@ -256,7 +293,9 @@ $(document).ready(function() {
         dataType: 'json',
         success: function (data) {
             if (data && data.topics && data.sorts) {
-                dropdownItems(data.topics, 'topicDropdownMenu', dropTopicClick);
+                dropdownItems(data.topics, 'topicDropdownMenu', function(itemText) {
+                    dropTopicClick(itemText, videos);
+                });
                 dropdownItems(data.sorts, 'sortDropdownMenu', function(itemText) {
                     dropSortClick(itemText, videos);
                 });
@@ -264,13 +303,12 @@ $(document).ready(function() {
                 dropTopicGenerate('topicDropdownMenu');
                 dropSortGenerate('sortDropdownMenu');
             }
-    
+
+
             $('.loader').hide();
     
-            let videos = [];
-    
             $.each(data.courses, function(index, item) {
-                videos.push({ video: item, views: item.views, published_at: new Date(item.published_at), topic: item.topic });
+                videos.push({ video: item, views: item.views, published_at: new Date(item.published_at), topic: item.topic, keywords: item.keywords });
             });
             showVideos(videos);
         },
@@ -283,7 +321,9 @@ $(document).ready(function() {
 
     function showVideos(videos) {
         $('.courseImage').empty();
-        $.each(videos, function(index, obj) {
+        let keywords = $('#searchInput').val().toLowerCase();
+        let filteredVideos = filterKey(filtered, keywords);
+        $.each(filteredVideos, function(index, obj) { 
             let item = obj.video;
             let stars = '';
             for (let i = 0; i < item.star; i++) {
@@ -313,8 +353,16 @@ $(document).ready(function() {
                                 '</div>' +
                             '</div>' +
                         '</div>';
-
             $('.courseImage').append(courseCard);
         });
+
+        if (filteredVideos.length !== 1) {
+            $('.video-count').text(filteredVideos.length + ' videos');
+        } else {
+            $('.video-count').text(filteredVideos.length + ' video');
+        }
     }
+
+    filtered = videos;
+    showVideos(videos);
 });
