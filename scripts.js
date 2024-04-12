@@ -1,5 +1,7 @@
 // Quote Carousel
 
+//Push
+
 $(document).ready(function() {
 
     $('.loader').show();
