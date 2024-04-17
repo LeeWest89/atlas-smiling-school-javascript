@@ -1,6 +1,6 @@
 // Quote Carousel
 
-//Push
+//Push again
 
 $(document).ready(function() {
 
